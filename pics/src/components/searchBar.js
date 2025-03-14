@@ -6,7 +6,7 @@ function searchBar({ onSubmit }) {
 
     return <div>
         <button onClick={handleClick}></button>
-    </div>
+    </div>dfasdfsa
 }
 
 export default searchBar; 
