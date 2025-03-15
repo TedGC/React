@@ -3,10 +3,6 @@ import { useState } from 'react'
 function searchBar({ onSubmit }) {
     const [term, setTerm] = useState('');
 
-    const handleChange = (event) => {
-        setTerm(event.target.value)
-    }
-
 
 
     const handleFormSubmit = (event) => {
@@ -14,6 +10,12 @@ function searchBar({ onSubmit }) {
 
         onSubmit(term)
     }
+
+    const handleChange = (event) => {
+        setTerm(event.target.value)
+    }
+
+
 
     return <div>
         <form onSubmit={handleFormSubmit}>
