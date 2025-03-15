@@ -15,7 +15,7 @@ function App() {
 
 
     return <div>
-        <searchBar onSubmit={handleSubmit} />
+        <earchBar onSubmit={handleSubmit} />
         <imageList images={images} />
     </div>
 }
