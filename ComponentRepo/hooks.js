@@ -30,3 +30,31 @@ const removeColor = () => {
 
   setFruit(rest);
 };
+
+
+const [colors, setColors] = useState(['red', 'green', 'blue']);
+
+const removeColorAtIndex = (indexToRemove) => {
+  const updatedColors = colors.filter((color, index) => {
+    return index !== indexToRemove;
+  });
+
+  setColors(updatedColors);
+};
+
+
+
+
+const [fruit, setFruit] = useState({
+  color: 'red',
+  name: 'apple',
+});
+
+const changeColor = (newColor) => {
+  const updatedFruit = {
+    ...fruit,
+    color: newColor,
+  };
+
+  setFruit(updatedFruit);
+};
