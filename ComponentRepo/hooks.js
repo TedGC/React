@@ -92,3 +92,34 @@ for (let i = 1; i <= 151; i++) {
     pokemon.appendChild(label);
     container.appendChild(pokemon)
 }
+
+
+class Parent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.child = React.createRef();
+  }
+
+  onClick = () => {
+    this.child.current.getMessage();
+  };
+
+  render() {
+    return (
+      <div>
+        <Child ref={this.child} />
+        <button onClick={this.onClick}>Click</button>
+      </div>
+    );
+  }
+}
+
+class Child extends React.Component {
+  getMessage() {
+    alert("Message from Child");
+  }
+
+  render() {
+    return <h1>Child Component</h1>;
+  }
+}
