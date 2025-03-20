@@ -45,6 +45,64 @@ const removeColorAtIndex = (indexToRemove) => {
 
 
 
+
+
+
+
+Class App extends Component {
+  state = {
+    file: null
+  };
+
+  handleFile(e) {
+    let file = e.target.files[0];
+    this.setState({ file });
+  }
+  async handleUpload(e) {
+    console.log(this.state.file);
+    await uploadImage(this.state.file);
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <h1> File Upload in React </h1>
+        <input type="file" name="file" onChange={(e) => this.handleFile(e)} />
+        <button onClick={(e) => this.handleUpload(e)}>Upload</button>
+      </div>
+    );
+  }
+}
+
+const uploadImage = async (file) => {
+  try {
+    console.log("Upload Image", file);
+    const formData = new FormData();
+    formData.append("filename", file);
+    formData.append("destination", "images");
+    formData.append("create_thumbnail", true);
+    const config = {
+      headers: {
+        "content-type": "multipart/form-data"
+      }
+    };
+
+    const url = "FILE_DIRECTORY";
+
+    const result = await axios.post(url, formData, config);
+    console.log("REsult: ", result);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const rootElement = document.getElementById("root");
+ReactDOM.render(<App />, rootElement);
+
+
+
+
+
 const [fruit, setFruit] = useState({
   color: 'red',
   name: 'apple',
