@@ -1,4 +1,39 @@
-unction App() {
+import { Link, BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
+const IndexPage = () => {
+  return <h3>Home Page</h3>;
+};
+
+const AboutPage = () => {
+  return <h3>About Page</h3>;
+};
+
+const NoMatchPage = () => {
+  return <h3>Page Not Found</h3>;
+};
+
+const App = () => {
+  return (
+    <section className="App">
+      <Router>
+        <Link to="/"> Home | </Link>
+        <Link to="/about"> About | </Link>
+        <Link to="/page-not-found"> 404 </Link>
+        <Switch>
+          <Route exact path="/" component={IndexPage} />
+          <Route exact path="/about" component={AboutPage} />
+          <Route component={NoMatchPage} />
+        </Switch>
+      </Router>
+    </section>
+  );
+};
+
+
+
+
+
+function App() {
 
   const [value, setValue] = React.useState("");
 
