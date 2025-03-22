@@ -1,3 +1,23 @@
+
+
+//how to show a toggle function in React
+
+export default function App() {
+
+  const [show, toggleShow] = React.useState(true);
+
+  return (
+    <div>
+      <button onClick={() => toggleShow(!show)}>
+        Toggle: {show ? "Show" : "Hide"}
+      </button>
+      {show && <h2>Hello World!</h2>}
+    </div>
+  );
+}
+
+
+
 const App = () => {
   const [counter, setCounter] = useState(0);
 
