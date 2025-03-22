@@ -1,3 +1,19 @@
+import { CookiesProvider } from "react-cookie";
+import ReactDOM from "react-dom";
+
+import App from "./App";
+
+const rootElement = document.getElementById("root");
+ReactDOM.render(
+  <CookiesProvider>
+    <App />
+  </CookiesProvider>,
+  rootElement
+);
+
+
+
+
 //jestcase test
 
 // App.js
