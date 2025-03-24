@@ -195,3 +195,17 @@ class App extends React.Component {
 }
 
 export default withRouter(App);
+
+
+import Parent from "./Parent";
+import Child from "./Child";
+
+const rootElement = document.getElementById("root");
+ReactDOM.render(
+  <StrictMode>
+    <Parent>
+      <Child name="Child Component Props" />
+    </Parent>
+  </StrictMode>,
+  rootElement
+);
