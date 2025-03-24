@@ -44,3 +44,34 @@ export default function App()
     </div>
   );
 }
+
+
+
+import React, { useState } from "react";
+import { useCookies } from "react-cookie";
+
+const App = () => {
+
+  const [name, setName] = useState("");
+  const [cookies, setCookie] = useCookies(["user"]);
+
+  const handle = () => {
+    setCookie("name", name, { path: "/" });
+  };
+  return (
+    <div className="App">
+      <h1> Cookies in React </h1>
+      <input
+        placeholder="Cookie value"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
+      <button onClick={handle}>Set Cookie</button>
+      
+      {cookies.name && (
+        <div>Name: {cookies.name}</div>
+      )}
+    </div>
+  );
+};
+export default App;
