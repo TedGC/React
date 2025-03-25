@@ -98,3 +98,11 @@ export default Dropdown;
  * window.timeTwo = performance.now() between the target functions and determine 
  * whether each component is working or not 
  */
+
+
+
+/**
+ * window.locatiom = 'http://localhost:3000/dropdown
+ * window.history.pushState({} ,'',/dropdown)
+ * 
+ */
