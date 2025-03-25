@@ -1,51 +1,75 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { GoChevronDown } from 'react-icons/go';
+import Panel from './Panel';
 
 function Dropdown({ options, value, onChange }) {
-  const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
 
-  const handleClick = () => {
-    setIsOpen(!isOpen);
-  };
+    const divEl = useRef()
 
-  const handleOptionClick = (option) => {
-    // CLOSE DROPDOWN
-    setIsOpen(false);
-    // WHAT OPTION DID THE USER CLICK ON???
-    onChange(option);
-  };
+    useEffect(() => {
+        const handler = (event) => {
 
-  const renderedOptions = options.map((option) => {
+            if (!divEl.current) {
+                return;
+            }
+            if (!divEl.current.contains(event.target)) {
+                setIsOpen(false)
+            }
+        }
+        document.addEventListener('click', handler, true)
+
+        return () => {
+            document.removeEventListener('click', handler)
+        }
+
+    }, [])
+
+    const handleClick = () => {
+        setIsOpen(!isOpen);
+    };
+
+    const handleOptionClick = (option) => {
+        // CLOSE DROPDOWN
+        setIsOpen(false);
+        // WHAT OPTION DID THE USER CLICK ON???
+        onChange(option);
+    };
+
+    const renderedOptions = options.map((option) => {
+        return (
+            <div
+                className="hover:bg-sky-100 rounded cursor-pointer p-1"
+                onClick={() => handleOptionClick(option)}
+                key={option.value}
+            >
+                {option.label}
+            </div>
+        );
+    });
+
     return (
-      <div
-        className="hover:bg-sky-100 rounded cursor-pointer p-1"
-        onClick={() => handleOptionClick(option)}
-        key={option.value}
-      >
-        {option.label}
-      </div>
-    );
-  });
+        <div ref={divEl} className="w-48 relative">
 
-  return (
-    <div className="w-48 relative">
-      <div
-        className="flex justify-between items-center cursor-pointer border rounded p-3 shadow bg-white w-full"
-        onClick={handleClick}
-      >
-        {value?.label || 'Select...'}
-        <GoChevronDown className="text-lg" />
-      </div>
-      {isOpen && (
-        <div className="absolute top-full border rounded p-3 shadow bg-white w-full">
-          {renderedOptions}
+            <Panel
+                className="flex justify-between items-center cursor-pointe"
+                onClick={handleClick}
+            >
+                {value?.label || 'Select...'}
+                <GoChevronDown className="text-lg" />
+            </Panel>
+
+            {isOpen && (
+                <Panel className="absolute top-full">
+                    {renderedOptions}
+                </Panel>
+            )}
         </div>
-      )}
-    </div>
-  );
+    );
 }
 
 export default Dropdown;
+
 /**
  * how to think about all the user interactions that would happend for a single 
  * action of clicking the button and opening up the dropdown menu 
@@ -58,4 +82,19 @@ export default Dropdown;
  * 
  *  refer to lecture #201 for how I should go through each step and come up with
  * function to represent each step in detail 
+ * 
+ * Reusuasble presentaeiton components
+ * 
+ * 1. creawte a new component that shows a handful of JSX elements
+ * 2. make sure the component accpets + uses the children prop
+ * 3. allow extra classNames to be passsed in + merget them
+ * 4. take extra props, pass them through to root element 
+ * 
+ * how to check whewther the rendering is working or not on my own 
+ * 
+ * 1. performance.now() 
+ * -- figure out how long it takes to process it in console
+ * 
+ * window.timeTwo = performance.now() between the target functions and determine 
+ * whether each component is working or not 
  */
