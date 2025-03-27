@@ -51,3 +51,26 @@ class Child extends React.Component {
     return <h1>Child Component</h1>;
   }
 }
+
+class Parent extends React.Component {
+  render() {
+    return (
+      <div>
+        <Child ref={(instance) => { this.child = instance; }} />
+        <button onClick={() => { this.child.getMessage(); }} >
+          Click
+        </button>
+      </div>
+    );
+  }
+}
+
+class Child extends React.Component {
+  getMessage() {
+    alert("Message from Child");
+  }
+
+  render() {
+    return <h2>Child Component</h2>;
+  }
+}
