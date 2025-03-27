@@ -266,3 +266,18 @@ class Page2 extends React.Component {
 }
 
 export default withRouter(Page2);
+
+import React from "react";
+import { withRouter } from "react-router";
+
+class Page3 extends React.Component {
+  render() {
+    return (
+      <div>
+        <h2>This is the last page.</h2>
+      </div>
+    );
+  }
+}
+
+export default withRouter(Page3);
