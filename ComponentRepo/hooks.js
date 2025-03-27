@@ -193,3 +193,24 @@ export default function App() {
     </div>
   );
 }
+
+
+const posts = [
+  { id: 10, title: "Link One" },
+  { id: 20, title: "Link Two" },
+  { id: 30, title: "Link Three" }
+];
+
+export default function App() {
+  return (
+    <ul>
+      {posts.map(function (post) {
+        return (
+          <li key={post.id}>
+            <a href={"/posts/" + post.id}>{post.title}</a>
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
