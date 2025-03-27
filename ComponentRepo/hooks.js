@@ -241,3 +241,28 @@ function App() {
       </h2>
     </div>
   );
+
+  import React from "react";
+import { withRouter } from "react-router";
+
+class Page2 extends React.Component {
+  render() {
+    const { history } = this.props;
+
+    return (
+      <div>
+        <h2>This is the second page.</h2>
+        <br />
+        <button
+          onClick={() => {
+            history.push("/page3");
+          }}
+        >
+          Go to Page 3 &#x2192;
+        </button>
+      </div>
+    );
+  }
+}
+
+export default withRouter(Page2);
