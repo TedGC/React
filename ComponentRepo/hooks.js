@@ -214,3 +214,30 @@ export default function App() {
     </ul>
   );
 }
+
+
+function App() {
+  const [state, setState] = useState(true);
+
+  function toggle() {
+    setState(!state);
+  }
+
+  return (
+    <div className="App">
+      <h2 onClick={toggle}>
+        <p>Do you feel good today?</p>
+        <div className="toggle">
+          {state ? (
+            <span role="img" aria-label="Thums Up">
+              Yes! 👍
+            </span>
+          ) : (
+            <span role="img" aria-label="Thums Down">
+              No! 👎
+            </span>
+          )}
+        </div>
+      </h2>
+    </div>
+  );
