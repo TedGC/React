@@ -1,32 +1,42 @@
-import ReactDOM from 'react-dom'
-import { useEffect } from 'react';
+import SortableTable from "../components/SortableTable"
 
-function Modal({ onClose, children, actionBar }) {
 
-    useEffect(() => {
-        document.body.classList.add('overflow-hidden')
+function TablePage() {
+    const data = [
+        { name: 'Oragne', color: 'bg-orange-500', score: 1 },
+        { name: 'Apple', color: 'bg-red-500', score: 3 },
+        { name: 'Banana ', color: 'bg-yellow-500', score: 2 },
+        { name: 'Lime', color: 'bg-green-500', score: 7 },
+    ]
 
-        return () => {
-            document.body.classList.remove('overflow-hidden')
+    const config = [
+        {
+            label: 'Name',
+            render: (fruit) => fruit.name,
+            sortValue: (fruit) => fruit.name
+        },
+        {
+            label: 'Color',
+            render: (fruit) => <div className={`p-3 m-2 ${fruit.color}`}></div>
+        },
+        {
+            label: 'Score',
+            render: (fruit) => fruit.score,
+
+            sortValue: (fruit) => fruit.score
+
         }
-    }, [])
+    ]
 
-    return ReactDOM.createPortal(
+    const keyFn = (fruit) => {
+        return fruit.name
+    }
+
+    return (
         <div>
-
-            <div onClick={onClose} className="fixed inset-0 bg-gray-300 opacity-80"></div>
-            <div className="fixed inset-40 p-10 bg-white">
-                <div className='flex flex-col justify-between h-full'>
-                    {children}
-                    <div className='flex justify-end'>
-                        {actionBar}
-                    </div>
-                </div>
-            </div>
-        </div>,
-
-        document.querySelector('.modal-container')
-
+            <SortableTable data={data} config={config} keyFn={keyFn} />
+        </div>
     )
 }
-export default Modal; 
+
+export default TablePage
