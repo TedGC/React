@@ -1,4 +1,4 @@
-import { GoBell, GoCloudDownload, GoDatabase } from 'react-icons/go';
+import { GoClock, GoCheck, GoBug } from 'react-icons/go';
 import Button from '../components/Button';
 
 function ButtonPage() {
@@ -16,19 +16,19 @@ function ButtonPage() {
           className="mb-5"
           onClick={handleClick}
         >
-          <GoBell />
+          <GoClock />
           Click me!!
         </Button>
       </div>
       <div>
         <Button danger outline onMouseEnter={handleClick}>
-          <GoCloudDownload />
+          <GoCheck />
           Buy Now!
         </Button>
       </div>
       <div>
         <Button warning onMouseLeave={handleClick}>
-          <GoDatabase />
+          <GoBug />
           See Deal!
         </Button>
       </div>
