@@ -1,0 +1,29 @@
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchUsers } from '../store'
+import Skeleton from './skeleton';
+
+function UsersList() {
+    const dispatch = useDispatch();
+
+    const { isLoading, data, error } = useSelector((state) => {
+        return state.users; // {data: [], isLoading: false, error: null }
+
+    })
+    useEffect(() => {
+        dispatch((fetchUsers()))
+    }, [dispatch])
+
+    if (isLoading) {
+        return <div> <Skeleton times={6} className="h-10 w-full" /></div>
+    }
+
+    if (error) {
+        return <div> Error fetching data.. </div>
+    }
+    return <div>
+        {data.length}
+    </div>
+}
+
+export default UsersList
