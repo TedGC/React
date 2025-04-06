@@ -32,3 +32,7 @@ export default function NewTask({ onAdd }) {
         </div>
     );
 }
+
+// important to understand the significance of having 'onAdd' component 
+// within this app and how it is handed down or lifted up through various
+// components to be uuilized to redner various features on the app 
