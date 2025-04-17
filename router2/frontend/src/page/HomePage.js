@@ -1,13 +1,12 @@
 
-import { Link } from 'react-router-dom'
+import PageContent from "../components/PageContent"
 
 
 function HomePage() {
 
 
     return (
-
-        <h1> <Link to='' >Home</Link></h1>
+        <PageContent title="welcome!"></PageContent>
 
     )
 }
