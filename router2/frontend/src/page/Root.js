@@ -1,16 +1,19 @@
-import { Outlet, useNavigation } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 import MainNavigation from '../components/MainNavigation'
 
 function RootLayout() {
-    const navigation = useNavigation()
+    // const navigation = useNavigation()
+    //navigation is used to show the state of routing transition 
+    // hence having values of 'loading', 'submitting', 'idle'
 
-
-
+    //useNavigation will be displayed on the page that initiated route
+    // transitioning
     return (
         <>
             <MainNavigation />
             <main >
-                {navigation.state === 'loading' && <p>Loading ....</p>}
+                {/* {navigation.state === 'loading' && <p>Loading ....</p>} */}
+
                 <Outlet />
             </main>
         </>
